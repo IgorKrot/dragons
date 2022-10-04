@@ -7,6 +7,7 @@ function Home () {
 
    return (  
       <div className="App">
+         <h1>Rockets</h1>
          <CarouselDragons />
          <Description />
          <Popupinfo />

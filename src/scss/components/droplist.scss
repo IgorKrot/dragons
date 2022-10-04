@@ -14,11 +14,22 @@
    cursor: pointer;
 }
 .list_dragons_img {}
-.dragons_img {}
+.dragons_img {
+   width: 100px;
+   height: 100px;
+   object-fit: cover;
+}
 
 .list_dragons_name {
    height: 100px;
    width: 100px;
    margin: 0 0 0 50px;
+   color: #fff;
+}
+
+.button_close {
+   background-color: #8597a9;
+   height: 30px;
+   width: 100px;
    color: #fff;
 }
