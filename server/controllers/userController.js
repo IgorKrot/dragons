@@ -3,17 +3,17 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const {User} = require("../models/models")
 
-const generateJwt = (id, email, role) => {
+const generateJwt = (id, email) => {
    return jwt.sign(
-      {id, email, role},
+      {id, email},
       process.env.SECRET_KEY,
       {expiresIn: '24h'}
    )
 }
 
 class userController {
-   async registration (req, res) {
-      const {email, password, role} = req.body
+   async registration (req, res, next) {
+      const {email, password} = req.body
       if (!email || !password) {
          return next(ApiError.badRequest("Некорректный емейл или пароль"))
       }
@@ -22,8 +22,8 @@ class userController {
          return next(ApiError.badRequest("Пользвоатель с таким емейл уже существует"))
       }
       const hashPassword = await bcrypt.hash(password, 5)
-      const user = await User.create({email, role, password: hashPassword})
-      const token = generateJwt(user.id, user.email, user.role)
+      const user = await User.create({email, password: hashPassword})
+      const token = generateJwt(user.id, user.email)
       return res.json({token})
    }
 
@@ -37,12 +37,12 @@ class userController {
       if (!comparePassword) {
          return next(ApiError.internal('Указан неверный пароль'))
       }
-      const token = generateJwt(user.id, user.email, user.role)
+      const token = generateJwt(user.id, user.email)
       return res.json({token})
    }
 
    async check (req, res, next) {
-      const token = generateJwt(req.user.id, req.user.email, req.user.role)
+      const token = generateJwt(req.user.id, req.user.email)
       return res.json({token})
    }
 }

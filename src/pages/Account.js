@@ -4,7 +4,8 @@
 function Account () {
 
    return (  
-      <div className="App">
+      <div className="account_main">
+         Hi i am your Account
       </div>
    );
 }

@@ -27,10 +27,6 @@ const dataForCaruselSlice = createSlice({
    initialState,
 
    reducers: {
-      // dataFromLs: (state, action) => {
-      //    console.log(action.payload);
-      //    state.rocket = action.payload ? action.payload : [];
-      // },
    },
    extraReducers: {
    [fetchDragon.pending]: (state) => {
@@ -39,7 +35,6 @@ const dataForCaruselSlice = createSlice({
    },
    [fetchDragon.fulfilled]: (state, action) => {
       state.rocket = action.payload;
-      // console.log(action.payload);
       state.status = "Success";
    },
    [fetchDragon.pending]: (state) => {
