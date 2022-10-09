@@ -1,12 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchDragon } from '../redux/slices/dataForCaruselSlice'
-import { useEffect} from 'react';
+import { useSelector} from 'react-redux';
 
 
 function Description () {
    const { rocket } = useSelector((state) => state.rocket);
 
-   // console.log(rocket);
 
    return ( 
       <>

@@ -4,9 +4,8 @@ import Home from "../src/pages/Home";
 import Auth from "../src/pages/Auth";
 import Account from "../src/pages/Account";
 import Header from "../src/components/Header";
-import Registration from "../src/pages/Registration";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "../src/scss/main/app.scss"
 
 
@@ -20,8 +19,8 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/account" element={<Account />} />
                   <Route path="/auth" element={<Auth />} />
-                  <Route path="/account" element={<Account />} />
                </Routes>
+               <footer className="footer"></footer>
             </div>
          </div>
       </div>

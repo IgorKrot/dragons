@@ -1,18 +1,18 @@
 import {Link} from "react-router-dom"
-import { useSelector, useDispatch } from 'react-redux'
-import { setUser, setIsAuth } from '../redux/slices/dataAuth'
-import {useNavigate } from "react-router-dom";
-import {LOGIN_ROUTE} from "../utils/consts";
+import {useNavigate} from "react-router-dom";
+import {useSelector, useDispatch} from 'react-redux'
+import {setLogin} from '../redux/slices/dataAuth'
 
 
 function Header () {
+   const {login} = useSelector((state) => state.auth);
+
    const dispatch = useDispatch();
    let navigate = useNavigate();
-   const {isAuth, user} = useSelector((state) => state.auth);
 
    const logOut = () => {
-      dispatch(setUser({}));
-      dispatch(setIsAuth(false));
+      dispatch(setLogin(false));
+      navigate("/");
    }
 
    return (  
@@ -25,7 +25,7 @@ function Header () {
                   </div>
                </div>
             </Link>
-            {isAuth ?
+            {login ?
                <div className="buttons_bLock_flex">
                   <Link to="/account">
                      <button className="button_left">
@@ -40,13 +40,8 @@ function Header () {
                </div>
             :
             <div className="buttons_bLock_flex">
-                  {/* <Link to="/auth">
-                     <button className={isAuth ? "button_left none" : "button_left" }>
-                        <div className="button_left_text" onClick={() => navigate(LOGIN_ROUTE)}>Login</div>
-                     </button>
-                  </Link> */}
                   <Link to="/auth">
-                     <button className="button_right" onClick={() => navigate(LOGIN_ROUTE)}>
+                     <button className="button_right">
                         <div className="button_right_text">Auth</div>
                      </button>
                   </Link>

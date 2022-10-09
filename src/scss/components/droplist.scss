@@ -22,9 +22,15 @@
 
 .list_dragons_name {
    height: 100px;
-   width: 100px;
+   max-width: 100px;
    margin: 0 0 0 50px;
    color: #fff;
+   @media (max-width: 480px) {
+      margin: 0 0 0 5px;
+   }
+   @media (min-width: 480px) and (max-width: 767px) {
+      margin: 0 0 0 5px; 
+   }
 }
 
 .button_close {
@@ -32,4 +38,20 @@
    height: 30px;
    width: 100px;
    color: #fff;
+}
+
+.description_main_drop_list {
+   max-width: 400px;
+   @media (min-width: 768px) and (max-width: 1024px) {
+      width: 300px;
+      }
+   @media (min-width: 480px) and (max-width: 767px) {
+      width: 190px; 
+   }
+   @media (min-width: 320px) and (max-width: 479px) {
+      width: 150px;
+   }
+   @media (max-width: 320px) {
+      width: 100px;
+   }
 }

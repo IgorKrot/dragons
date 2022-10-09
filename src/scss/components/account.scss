@@ -1,7 +1,23 @@
 .account_main {
-   color: #fff;
-   max-width: 600px;
-   height: 300px;
-   margin: 0 auto;
-   text-align: center;
+
+
 }
+
+
+.acc_header {
+   height: 30px;
+   font-size: 2em;
+   color: #fff;
+   text-align: center;
+   margin: 10px 0 0 0;
+}
+
+.client_email, .client_status {
+   height: 30px;
+   font-size: 1.2em;
+   color: #fff;
+   text-align: center;
+   margin: 10px 0 0 0;
+}
+
+

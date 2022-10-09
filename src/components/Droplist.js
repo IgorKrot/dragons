@@ -3,14 +3,14 @@ import { fetchDragons } from '../redux/slices/dataForDropListSLice'
 import { useEffect, useState, useRef} from 'react';
 
 
-
 function Droplist () {
    const { rockets } = useSelector((state) => state.rockets);
    const [openPopup, setOpenPopup] = useState();
 
-
    const dispatch = useDispatch();
    const popupRef = useRef();
+
+
 
    useEffect(() => {
       const clickOutside = (event) => {
@@ -22,16 +22,13 @@ function Droplist () {
       return () => {document.body.removeEventListener("click", clickOutside);}
    }, []);
 
-
-
    useEffect(() => {
       async function getDragons () {
          dispatch(fetchDragons())};
          getDragons();
    }, []);
 
-
-
+   
    return ( 
       <div className="list_dragons_main" ref={popupRef}>
          {rockets ?
@@ -43,7 +40,7 @@ function Droplist () {
                   </div>
                   <div className="list_dragons_name">name: {dragons.name}</div> 
                   {(openPopup == i) && 
-                     (<div className="description_main">
+                     (<div className="description_main_drop_list">
                         <ul className="list_description">
                            <li className="name">name: {dragons.name}</li>
                            <li className="description">description: {dragons.description}</li>
@@ -52,7 +49,7 @@ function Droplist () {
                            <li className="mass">diametr: {dragons.diameter.meters}</li>
                            <li className="name">first flight: {dragons.first_flight}</li>
                         </ul>
-                        <button className="button_close" onClick={() => setOpenPopup(null)}>Close</button>
+                        <button className="button_close" onClick={(e) => {setOpenPopup(null); e.stopPropagation();}}>Close</button>
                      </div>)
                   }
                </div>   

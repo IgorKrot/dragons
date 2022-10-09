@@ -10,6 +10,9 @@
 }
 
 li {
-   margin: 5px 0;
+   margin: 10px 0;
    color: #fff;
+   &:nth-child(3) {
+      overflow: auto;
+   }
 }

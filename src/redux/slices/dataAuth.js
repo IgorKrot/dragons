@@ -1,21 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {registration, login} from "../../http/userAPI"
 
+
 export const dataAuth = createAsyncThunk("auth/dataAuthStatus", async(params, {dispatch}) => {
    const {email, password, isAuth} = params;
    try {
       let data;
       if (isAuth) {
          data = await login(email, password);
-         dispatch(setIsAuth(true))
-         console.log(data);
-         return data
       } else {
-         data = await registration(email, password);
-         dispatch(setIsAuth(true))
-         console.log(data);
-         return data
+         data = await registration(email, password); 
       }
+      dispatch(setIsAuth(true));
+      return data
    } catch (e) {
       alert(e.response.data.message)
    }
@@ -27,6 +24,7 @@ const initialState = {
    email: "",
    password: "",
    status: "Loading",
+   login: false,
 };
 
 const dataAuthSlice = createSlice({
@@ -41,10 +39,17 @@ const dataAuthSlice = createSlice({
          state.password = action.payload;
       },
       setIsAuth: (state, action) => {
-         state.password = action.payload;
+         state.isAuth = action.payload;
+         let authStatus = JSON.stringify(state.isAuth);
+         localStorage.setItem("authStatus", authStatus);
       },
       setUser: (state, action) => {
-         state.password = action.payload;
+         state.user = action.payload;
+      },
+      setLogin: (state, action) => {
+         state.login = action.payload;
+         let loginStatus = JSON.stringify(state.login);
+         localStorage.setItem("loginStatus", loginStatus);
       },
    },
    extraReducers: {
@@ -61,6 +66,6 @@ const dataAuthSlice = createSlice({
    }
 });
 
-export const { setEmail, setPassword, setIsAuth, setUser } = dataAuthSlice.actions;
+export const { setEmail, setPassword, setIsAuth, setUser, setLogin } = dataAuthSlice.actions;
 
 export default dataAuthSlice.reducer;
