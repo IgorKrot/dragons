@@ -12,6 +12,7 @@ export const dataAuth = createAsyncThunk("auth/dataAuthStatus", async(params, {d
          data = await registration(email, password); 
       }
       dispatch(setIsAuth(true));
+      dispatch(setLogin(true));
       return data
    } catch (e) {
       alert(e.response.data.message)

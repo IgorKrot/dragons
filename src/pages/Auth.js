@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {useNavigate} from "react-router-dom";
@@ -7,7 +7,7 @@ import {setEmail, setPassword, dataAuth, setLogin} from '../redux/slices/dataAut
 
 
 function Auth () {
-   const {isAuth, password, email} = useSelector((state) => state.auth);
+   const {isAuth, password, email, login} = useSelector((state) => state.auth);
 
    let navigate = useNavigate();
    const dispatch = useDispatch();
@@ -15,11 +15,14 @@ function Auth () {
 
    const onSubmit = (e) => {
       dispatch(dataAuth({email, password, isAuth}));
-      dispatch(setLogin(true));
-      navigate("/");
       e.preventDefault();
    }
 
+   useEffect(() => {
+      if (login) {navigate("/");}
+   }, [login]);
+
+   
    return (  
    <div className="form_auth">
       <h1>login/Reg</h1>   
